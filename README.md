@@ -1,68 +1,48 @@
-# HashMap en JavaScript
+# Knight's Travails
 
-Este proyecto forma parte del curso **Fullstack JavaScript** de [The Odin Project](https://www.theodinproject.com/lessons/javascript-hashmap).  
-El objetivo es implementar desde cero una **estructura de datos HashMap**, entendiendo cómo funciona internamente y practicando conceptos clave de algoritmos y estructuras de datos.  
-Además, se planea desarrollar una **representación gráfica** que permita visualizar la distribución de claves en buckets, así como interactuar con los métodos principales de la estructura.
+Este proyecto es parte del currículum de [The Odin Project](https://www.theodinproject.com/lessons/javascript-knights-travails).
 
----
+## 📖 Descripción
 
-## 🚀 Motivación
+El reto consiste en representar un tablero de ajedrez como un **grafo** y usar el algoritmo de **BFS (Breadth-First Search)** para calcular el camino más corto que recorre un caballo desde una casilla de inicio hasta una casilla de destino.
 
-En JavaScript ya existen objetos (`{}`) y `Map` para almacenar pares clave-valor.  
-Sin embargo, construir un **HashMap propio** permite:
+La misma lógica se puede extender a otras piezas de ajedrez, como la torre, simplemente cambiando la función que genera los movimientos.
 
-- Comprender cómo se distribuyen las claves en un arreglo de **buckets**.
-- Implementar y analizar una **función hash**.
-- Manejar **colisiones** mediante listas enlazadas.
-- Profundizar en el concepto de **factor de carga** y **redimensionado dinámico**.
-- Practicar el diseño y la implementación de métodos de una estructura de datos clásica.
-- **Visualizar de manera gráfica** cómo se insertan, eliminan y buscan los datos en el HashMap.
+## 🎯 Objetivos de aprendizaje
 
----
+* Modelar un tablero de 8×8 como un grafo.
+* Generar movimientos válidos de un caballo (y opcionalmente de otras piezas).
+* Implementar el algoritmo BFS en JavaScript.
+* Usar estructuras como:
 
-## 🛠️ Funcionalidades Implementadas
+  * **Cola** para explorar nodos en orden de capas.
+  * **Conjunto de visitados** para evitar ciclos.
+  * **Mapa de padres** para reconstruir el camino más corto.
+* Devolver la secuencia mínima de casillas entre dos puntos dados.
 
-El HashMap debe soportar:
+## 🚀 Uso
 
-- `set(key, value)`: Inserta un par clave-valor (o actualiza si la clave ya existe).  
-- `get(key)`: Devuelve el valor asociado a la clave o `null` si no existe.  
-- `has(key)`: Comprueba si la clave está presente.  
-- `remove(key)`: Elimina un par clave-valor si existe.  
-- `length()`: Devuelve el número de pares almacenados.  
-- `clear()`: Vacía la estructura.  
-- `keys()`: Devuelve un arreglo con todas las claves.  
-- `values()`: Devuelve un arreglo con todos los valores.  
-- `entries()`: Devuelve un arreglo de pares `[key, value]`.
+Ejemplo: encontrar el camino más corto para un caballo entre `[0,0]` y `[3,3]`.
 
-Además:
+```bash
+node index.js
+```
 
-- Manejo de **colisiones** con listas enlazadas.  
-- **Redimensionado automático** cuando se supera el factor de carga (`loadFactor`).  
-- **Representación gráfica interactiva** para probar las operaciones de inserción, búsqueda y eliminación.
+Salida esperada (lista de coordenadas):
 
----
+```js
+Caballo de [0,0] a [3,3]: [ [0,0], [1,2], [3,3] ]
+```
 
-## 📚 Aprendizajes Clave
+## 📂 Estructura
 
-- Cómo diseñar una **función hash simple**.  
-- Diferencia entre complejidad **promedio** y **peor caso** en un HashMap.  
-- La importancia de los **invariantes internos**: no duplicar claves, mantener `count` correcto, validar índices.  
-- Cómo reinsertar elementos correctamente al **duplicar la capacidad**.  
-- Qué aporta una **visualización gráfica** para reforzar la comprensión de estructuras de datos.
+* `index.js` → archivo principal para ejecutar ejemplos.
+* `movimientosCaballo.js` → lógica de movimientos del caballo.
+* `bfs.js` → implementación genérica de BFS.
+* `movimientosTorre.js` (opcional) → ejemplo extendido para torre.
 
----
+## 📝 Notas
 
-## 🧪 Pruebas sugeridas
-
-1. Insertar varias claves hasta acercarse al factor de carga y verificar el **resize**.  
-2. Sobrescribir valores en una clave existente y comprobar que la longitud no cambia.  
-3. Usar `remove`, probando eliminar claves en diferentes posiciones del bucket.  
-4. Verificar que `keys`, `values` y `entries` devuelven la información completa.  
-5. **Comprobar en la interfaz gráfica** que los buckets y listas enlazadas reflejan los cambios tras cada operación.
-
----
-
-## 📌 Estado
-
-Este proyecto está en construcción como parte de mi aprendizaje con The Odin Project.  
-El propósito no es crear una librería de producción, sino **comprender a fondo la lógica de los HashMaps** y reforzar el aprendizaje con una **visualización interactiva**.
+* Este proyecto enfatiza más en el **razonamiento con grafos** que en el ajedrez en sí.
+* La clave es comprender cómo BFS garantiza el **camino más corto** en un grafo no ponderado.
+* El algoritmo se puede generalizar para cualquier pieza de ajedrez.
